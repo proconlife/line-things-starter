@@ -3,6 +3,7 @@ const USER_SERVICE_UUID         = 'c4197823-cbe8-4236-a055-7b861b341245'; // LED
 // User service characteristics
 const LED_CHARACTERISTIC_UUID   = 'E9062E71-9E62-4BC6-B0D3-35CDCD9B027B';
 const BTN_CHARACTERISTIC_UUID   = '62FBD229-6EDD-4D1A-B554-5C4E1BB29169';
+const READ_SERVICE_UUID         = '3fa8cf18-b8b0-40b8-8747-90d0f3c97031';
 
 // PSDI Service UUID: Fixed value for Developer Trial
 const PSDI_SERVICE_UUID         = 'E625601E-9E55-4597-A598-76018A0D293D'; // Device ID
@@ -208,6 +209,17 @@ function liffConnectToDevice(device) {
 }
 
 function liffGetUserService(service) {
+    // Read value
+    service.getCharacteristic(READ_CHARACTERISTIC_UUID).then(characteristic => {
+        return characteristic.readValue();
+    }).then(value => {
+        // Convert byte buffer to Int32 in little endian
+        const value = new DataView(value.buffer).getInt32(0, true);
+        document.getElementById("total-count").innerText = value;
+    }).catch(error => {
+        uiStatusError(makeErrorMsg(error), false);
+    });
+
     // Button pressed state
     service.getCharacteristic(BTN_CHARACTERISTIC_UUID).then(characteristic => {
         liffGetButtonStateCharacteristic(characteristic);
