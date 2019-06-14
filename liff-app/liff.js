@@ -38,7 +38,10 @@ function handlerToggleLed() {
 function uiToggleLedButton(state) {
     const el = document.getElementById("btn-led-toggle");
     el.innerText = state ? "Trashbox Open" : "Trashbox Close";
-
+    const authcode = document.getElementById("authcode");
+    if ( authcode.value != "1234" ) {
+        return;
+    }
     if (state) {
       el.classList.add("led-on");
     } else {
@@ -261,6 +264,10 @@ function liffGetButtonStateCharacteristic(characteristic) {
 }
 
 function liffToggleDeviceLedState(state) {
+    const authcode = document.getElementById("authcode");
+    if ( authcode.value != "1234" ) {
+        return;
+    }
     // on: 0x01
     // off: 0x00
     window.ledCharacteristic.writeValue(
