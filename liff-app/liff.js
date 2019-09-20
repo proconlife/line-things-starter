@@ -37,11 +37,11 @@ function handlerToggleLed() {
 
 function uiToggleLedButton(state) {
     const el = document.getElementById("btn-led-toggle");
-    el.innerText = state ? "Trashbox Open" : "Trashbox Close";
+    el.innerText = state ? "Open" : "Close";
     const authcode = document.getElementById("authcode");
-    if ( authcode.value != "1234" ) {
-        return;
-    }
+    //if ( authcode.value != "1234" ) {
+    //    return;
+    //}
     if (state) {
       el.classList.add("led-on");
     } else {
@@ -189,7 +189,7 @@ function liffConnectToDevice(device) {
         authcode = document.getElementById("authcode");
        liff.getProfile().then(profile => {
         //displayname.innerText = profile.displayName;
-        authcode.innerText      = profile.userId;
+        authcode.value      = profile.userId;
       })
       .catch((err) => {
         //displayname.innerText = "err";
