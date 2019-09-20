@@ -185,6 +185,16 @@ function liffConnectToDevice(device) {
         }).catch(error => {
             uiStatusError(makeErrorMsg(error), false);
         });
+        
+        authcode = document.getElementById("authcode");
+       liff.getProfile().then(profile => {
+        //displayname.innerText = profile.displayName;
+        authcode.innerText      = profile.userId;
+      })
+      .catch((err) => {
+        //displayname.innerText = "err";
+        authcode.innerText      = "err";
+      });
 
         // Device disconnect callback
         const disconnectCallback = () => {
@@ -264,10 +274,10 @@ function liffGetButtonStateCharacteristic(characteristic) {
 }
 
 function liffToggleDeviceLedState(state) {
-    const authcode = document.getElementById("authcode");
-    if ( authcode.value != "1234" ) {
-        return;
-    }
+    //const authcode = document.getElementById("authcode");
+    //if ( authcode.value != "1234" ) {
+    //    return;
+    //}
     // on: 0x01
     // off: 0x00
     window.ledCharacteristic.writeValue(
