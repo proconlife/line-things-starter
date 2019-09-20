@@ -68,7 +68,7 @@ function uiToggleStateButton(pressed) {
     }
 }
 
-function uiToggleConnected(connected) {
+function uiToggleDeviceConnected(connected) {
     const elStatus = document.getElementById("status");
     const elControls = document.getElementById("controls");
 
