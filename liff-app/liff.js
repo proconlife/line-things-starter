@@ -52,8 +52,8 @@ function uiToggleLedButton(state) {
 function uiCountPressButton() {
     clickCount++;
 
-    const el = document.getElementById("click-count");
-    el.innerText = clickCount;
+    //const el = document.getElementById("click-count");
+    //el.innerText = clickCount;
 }
 
 function uiToggleStateButton(pressed) {
@@ -68,7 +68,7 @@ function uiToggleStateButton(pressed) {
     }
 }
 
-function uiToggleDeviceConnected(connected) {
+function uiToggleConnected(connected) {
     const elStatus = document.getElementById("status");
     const elControls = document.getElementById("controls");
 
